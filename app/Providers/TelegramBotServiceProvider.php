@@ -20,14 +20,9 @@ class TelegramBotServiceProvider extends ServiceProvider
             return new Telegram($bot_api_key);
         });
 
-        $this->app->singleton(TgCommandRouter::class, function ($app) {
-            return new TgCommandRouter();
-        });
-
         $this->app->singleton(TelegramBotService::class, function ($app) {
             return new TelegramBotService(
                 $app->make(Telegram::class),
-                $app->make(TgCommandRouter::class)
             );
         });
 
@@ -38,6 +33,7 @@ class TelegramBotServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        require base_path('routes/bot.php');
+        require base_path('routes/bot/message.php');
+        require base_path('routes/bot/callbacks.php');
     }
 }

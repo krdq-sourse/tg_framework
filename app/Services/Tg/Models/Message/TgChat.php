@@ -23,4 +23,10 @@ class TgChat
     {
         return $this->type === 'private';
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
 }

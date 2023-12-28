@@ -2,14 +2,29 @@
 
 namespace App\Services\Tg\Routes;
 
-use App\Services\Tg\Handlers\Handler;
 use App\Services\Tg\Models\Message\TgMessage;
 use Illuminate\Contracts\Container\BindingResolutionException;
 
-class TextMessageRouter
+class MessageRouter
 {
     protected static array $routes = [];
 
+    /**
+     * @param string $command
+     * @param string $handlerClass
+     * @param array $middleware
+     * @return void
+     */
+    public static function command(string $command, string $handlerClass, array $middleware = []): void
+    {
+        if ($command[0] !== '/') {
+            $command = '/' . $command;
+        }
+
+        $pattern = '/^' . preg_quote($command, '/') . '(?=\s|$)/';
+
+        self::addRoute($pattern, $handlerClass, $middleware, 'command');
+    }
 
     public static function text($pattern, $handlerClass, array $middleware = [])
     {

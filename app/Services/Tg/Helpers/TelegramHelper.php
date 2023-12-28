@@ -2,6 +2,7 @@
 
 namespace App\Services\Tg\Helpers;
 
+use Longman\TelegramBot\Entities\InlineKeyboard;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Request as TelegramRequest;
@@ -122,6 +123,55 @@ class TelegramHelper
         ];
 
         return TelegramRequest::sendVideoNote($data);
+    }
+
+    public function deleteMessage($chatId, $messageId): ServerResponse
+    {
+        $data = [
+            'chat_id' => $chatId,
+            'message_id' => $messageId,
+        ];
+
+        return TelegramRequest::deleteMessage($data);
+    }
+
+    public function sendKeyboardMessage($chatId, $text, $keyboard): ServerResponse
+    {
+        $data = [
+            'chat_id'      => $chatId,
+            'text'         => $text,
+            'reply_markup' => $keyboard,
+        ];
+
+        return TelegramRequest::sendMessage($data);
+    }
+
+    public function editMessageText($chatId, $messageId, $text, $replyMarkup = null): ServerResponse
+    {
+        $data = [
+            'chat_id' => $chatId,
+            'message_id' => $messageId,
+            'text' => $text,
+            'reply_markup' => $replyMarkup,
+        ];
+
+        return TelegramRequest::editMessageText($data);
+    }
+
+    public function addInlineKeyboard($buttons): InlineKeyboard
+    {
+        return new InlineKeyboard(...$buttons);
+    }
+
+    public function updateInlineKeyboard($chatId, $messageId, $inlineKeyboard): ServerResponse
+    {
+        $data = [
+            'chat_id' => $chatId,
+            'message_id' => $messageId,
+            'reply_markup' => $inlineKeyboard,
+        ];
+
+        return TelegramRequest::editMessageReplyMarkup($data);
     }
 
 }

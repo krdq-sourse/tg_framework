@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Services\Tg\Handlers;
+namespace App\Services\Tg\Handlers\Message;
 
 use App\Services\Tg\Helpers\TelegramHelper;
-use App\Services\Tg\Models\Message\TgMessage;
 
 abstract class Handler implements MessageHandler
 {

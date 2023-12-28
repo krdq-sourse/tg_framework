@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Tg\Handlers\Demo;
+namespace App\Services\Tg\Handlers\Message\Demo;
 
-use App\Services\Tg\Handlers\Handler;
+use App\Services\Tg\Handlers\Message\Handler;
 use App\Services\Tg\Models\Message\TgMessage;
 use Illuminate\Support\Facades\Storage;
 

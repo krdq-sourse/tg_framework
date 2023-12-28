@@ -57,6 +57,10 @@ class TgMessage
 
     public function getType()
     {
+        if ($this->isCommand()) {
+            return 'command';
+        }
+
         if ($this->text) {
             return 'text';
         } elseif ($this->photo) {
@@ -70,14 +74,10 @@ class TgMessage
         return 'unknown';
     }
 
+    public function getChat()
+    {
+        // Предполагая, что $this->chat уже является объектом TgChat
+        return $this->chat;
+    }
 
-//    public function isChat()
-//    {
-//        return $this->chatType === 'group' || $this->chatType === 'supergroup';
-//    }
-//
-//    public function isDialog()
-//    {
-//        return $this->chatType === 'private';
-//    }
 }
