@@ -3,13 +3,15 @@
 namespace App\Services\Tg\Middleware;
 
 use App\Services\Tg\Models\Message\TgMessage;
+use App\Services\Tg\Models\CallbackQuery\CallbackQuery;
+
 
 class GroupChatMiddleware extends Middleware
 {
-    public function handle(TgMessage $tgMessage, callable $next)
+    public function handle(TgMessage|CallbackQuery $tgEntity, callable $next)
     {
-        if ($tgMessage->chat->isGroupChat()) {
-            return $next($tgMessage);
+        if ($tgEntity->getChat()->isGroupChat()) {
+            return $next($tgEntity);
         }
 
         return null;

@@ -14,12 +14,12 @@ class TelegramHelper
      * @param $stickerFileId
      * @return ServerResponse
      */
-    public function sendSticker($chatId, $stickerFileId): ServerResponse
+    public function sendSticker($chatId, $stickerFileId, array $context = []): ServerResponse
     {
-        $data = [
+        $data = array_merge([
             'chat_id' => $chatId,
             'sticker' => $stickerFileId
-        ];
+        ], $context);
 
         return TelegramRequest::sendSticker($data);
     }
@@ -138,8 +138,8 @@ class TelegramHelper
     public function sendKeyboardMessage($chatId, $text, $keyboard): ServerResponse
     {
         $data = [
-            'chat_id'      => $chatId,
-            'text'         => $text,
+            'chat_id' => $chatId,
+            'text' => $text,
             'reply_markup' => $keyboard,
         ];
 

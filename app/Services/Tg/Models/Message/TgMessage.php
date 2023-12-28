@@ -40,6 +40,11 @@ class TgMessage
         return !empty($this->text) && $this->text[0] === '/';
     }
 
+    public function getChat(): TgChat
+    {
+        return $this->chat;
+    }
+
     public function hasSticker(): bool
     {
         return !empty($this->sticker);
@@ -72,12 +77,6 @@ class TgMessage
         }
 
         return 'unknown';
-    }
-
-    public function getChat()
-    {
-        // Предполагая, что $this->chat уже является объектом TgChat
-        return $this->chat;
     }
 
 }

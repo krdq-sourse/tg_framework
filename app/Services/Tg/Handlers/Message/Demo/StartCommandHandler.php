@@ -13,7 +13,7 @@ class StartCommandHandler extends Handler
     {
         $inlineButton = ButtonBuilder::inlineButton('Кнопка', 'callback_data');
         $inlineKeyboard = ButtonBuilder::inlineKeyboard([[$inlineButton]]);
-        $this->tgHelper->sendKeyboardMessage($tgMessage->chat->id, 'hui', $inlineKeyboard);
+        $this->tgHelper->sendKeyboardMessage($tgMessage->chat->id, 'не нажимай на кнопку!', $inlineKeyboard);
 
     }
 }

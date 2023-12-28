@@ -2,6 +2,7 @@
 
 namespace App\Services\Tg\Models\CallbackQuery;
 
+use App\Services\Tg\Models\Message\TgChat;
 use App\Services\Tg\Models\Message\TgMessage;
 use App\Services\Tg\Models\Message\TgUser;
 
@@ -32,6 +33,11 @@ class CallbackQuery
         return $this->id;
     }
 
+
+    public function getChat(): ?TgChat
+    {
+        return $this->message?->getChat();
+    }
     public function getChatId()
     {
         return $this->message?->getChat()->getId();
