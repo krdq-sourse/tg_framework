@@ -9,10 +9,9 @@ abstract class Handler implements MessageHandler
 //    protected TgMessage $tgMessage;
     protected TelegramHelper $tgHelper;
 
-    public function __construct()
+    public function __construct(TelegramHelper $telegramHelper)
     {
-//        $this->tgMessage = $tgMessage;
-        $this->tgHelper = app(TelegramHelper::class);
+        $this->tgHelper = $telegramHelper;
     }
 
 }

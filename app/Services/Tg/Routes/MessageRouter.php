@@ -2,7 +2,9 @@
 
 namespace App\Services\Tg\Routes;
 
+use App\Services\Tg\Helpers\TelegramHelper;
 use App\Services\Tg\Models\Message\TgMessage;
+use Closure;
 use Illuminate\Contracts\Container\BindingResolutionException;
 
 class MessageRouter
@@ -73,7 +75,7 @@ class MessageRouter
     {
         foreach (self::$routes as $route) {
             if ($route['type'] === $tgMessage->getType()) {
-                if (!empty($route['pattern']) && !preg_match($route['pattern'], $tgMessage->text, $matches)) {
+                if (!empty($route['pattern']) && !preg_match($route['pattern'], mb_strtolower($tgMessage->text), $matches)) {
                     continue;
                 }
 
@@ -88,9 +90,9 @@ class MessageRouter
     /**
      * @param array $middleware
      * @param $handler
-     * @return \Closure
+     * @return Closure
      */
-    protected static function buildMiddlewareStack(array $middleware, $handler): \Closure
+    protected static function buildMiddlewareStack(array $middleware, $handler): Closure
     {
         $coreFunction = function ($tgMessage) use ($handler) {
             return $handler->handle($tgMessage);

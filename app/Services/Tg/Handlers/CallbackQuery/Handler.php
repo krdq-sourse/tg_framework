@@ -8,9 +8,9 @@ abstract class Handler implements CallbackQueryHandler
 {
     protected TelegramHelper $tgHelper;
 
-    public function __construct()
+    public function __construct(TelegramHelper $telegramHelper)
     {
-        $this->tgHelper = app(TelegramHelper::class);
+        $this->tgHelper = $telegramHelper;
     }
 
 }

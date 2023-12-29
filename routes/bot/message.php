@@ -1,6 +1,9 @@
 <?php
 
-use App\Services\Tg\Handlers\Message\Demo\{DontKnowHandler, ShowMeHandler};
+use App\Services\Tg\Handlers\Message\Demo\{
+    DontKnowHandler,
+    ShowMeHandler
+};
 use App\Services\Tg\Handlers\Message\Demo\BusyHandler;
 use App\Services\Tg\Handlers\Message\Demo\StartCommandHandler;
 use App\Services\Tg\Handlers\Message\Demo\StickerHandler;
